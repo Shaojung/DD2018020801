@@ -23,6 +23,10 @@ public class MyService extends Service {
         super.onCreate();
         Log.d("MyService", "This is onCreate");
         nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        if (Build.VERSION.SDK_INT >= 26)
+        {
+            regChannel();
+        }
     }
 
     @Override
@@ -36,7 +40,7 @@ public class MyService extends Service {
                 for (i=0;i<10;i++)
                 {
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(500);
                         Log.d("MyService", "Delay, i=" + i);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
